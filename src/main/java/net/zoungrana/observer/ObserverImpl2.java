@@ -7,16 +7,23 @@ public class ObserverImpl2 implements Observer {
     private final List<Integer> history=new ArrayList<>();
 
     @Override
-    public void update(int newState) {
-        history.add(newState);
+    public void update(Observable o) {
 
-        double sum=history.stream()
-                .mapToInt(Integer::intValue)
-                .sum();
+        if(o instanceof ObservableImpl obs){
 
-        System.out.println("+++++++++++++++++++++++++++++++++++++");
-        System.out.println("Observer 2. Moyenne= " + sum/history.size());
-        System.out.println("Observer 2. Historique= " + history );
-        System.out.println("+++++++++++++++++++++++++++++++++++++");
+            if(history.size()<100){
+                history.add(obs.getState());
+
+                double sum=history.stream()
+                        .mapToInt(Integer::intValue)
+                        .sum();
+
+                System.out.println("+++++++++++++++++++++++++++++++++++++");
+                System.out.println("Observer 2. Moyenne= " + sum/history.size());
+                System.out.println("Observer 2. Historique= " + history );
+                System.out.println("+++++++++++++++++++++++++++++++++++++");
+            }
+
+        }
     }
 }
