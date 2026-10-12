@@ -1,10 +1,11 @@
 package net.zoungrana.observer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ObservableImpl implements Observable {
 
-    private List<Observer> observers;
+    private final List<Observer> observers=new ArrayList<>();
     private int state;
 
     @Override
