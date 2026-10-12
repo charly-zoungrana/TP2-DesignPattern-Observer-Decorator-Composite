@@ -11,11 +11,14 @@ public class Main {
 
         Stream.of(observer1,observer2).forEach(observable::subscribe);
 
-        observable.subscribe(newState -> {
-            System.out.println("+++++++++++++++++++++++++++++++++++++");
-            System.out.println("Observer 3: " + newState*3);
-            System.out.println("+++++++++++++++++++++++++++++++++++++");
+        observable.subscribe(o -> {
+            if(o instanceof ObservableImpl obs){
+                System.out.println("+++++++++++++++++++++++++++++++++++++");
+                System.out.println("Observer 3: " + obs.getState()*3);
+                System.out.println("+++++++++++++++++++++++++++++++++++++");
+            }
         });
+
 
         observable.setState(50);
         observable.setState(100);
