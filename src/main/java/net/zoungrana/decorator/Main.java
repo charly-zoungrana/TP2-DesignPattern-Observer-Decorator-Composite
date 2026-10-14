@@ -17,5 +17,14 @@ public class Main {
         System.out.println(boisson.getDescription());
         System.out.println(boisson.cout());
 
+        boisson=new ChocolatDecorator(boisson);
+        System.out.println(boisson.getDescription());
+        System.out.println(boisson.cout());
+
+        boisson=new CaramelDecorator(boisson);
+        System.out.println(boisson.getDescription());
+        System.out.println(boisson.cout());
+
+
     }
 }
