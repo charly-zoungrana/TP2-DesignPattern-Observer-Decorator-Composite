@@ -75,7 +75,6 @@ classDiagram
     Folder o--> "*" Component : compose / contient (components)
 ```
 
-![Diagramme de classes](DiagrammeClass.png)
 
 Lecture du diagramme :
 
