@@ -12,7 +12,7 @@ classes et une trace d'exécution. La branche `main` regroupe le code une fois c
 |---|---|---|
 | Observer | Comportemental | [README Observer](https://github.com/charly-zoungrana/TP2-DesignPattern-Observer-Decorator-Composite/blob/observer/README.md) |
 | Decorator | Structurel | [README Decorator](https://github.com/charly-zoungrana/TP2-DesignPattern-Observer-Decorator-Composite/blob/decorator/README.md) |
-| Composite | Structurel | — |
+| Composite | Structurel | [README Composite](https://github.com/charly-zoungrana/TP2-DesignPattern-Observer-Decorator-Composite/blob/composite/README.md) |
 
 ## Observer
 
@@ -48,22 +48,26 @@ Détails, diagramme de classes et trace d'exécution : [README de la branche `de
 
 ## Composite
 
-**Problème :** manipuler de façon uniforme des objets simples et des groupes d'objets organisés en arborescence.
+**Problème :** manipuler de façon uniforme des objets simples (fichiers) et des groupes d'objets (dossiers) organisés en structure arborescente (hiérarchies partie-tout), sans multiplier les tests de type (`instanceof`).
 
-**Solution :** feuilles et composites implémentent une même interface ; un composite contient des enfants de ce type et
-leur propage les opérations. Le code client traite un élément seul et un groupe de la même manière.
+**Solution :** une classe abstraite commune (`Component`) définit les opérations et attributs partagés (`name`, `level`, `print()`). Les feuilles (`File`) et les conteneurs (`Folder`) en héritent. Le composite maintient une liste polymorphique d'enfants `List<Component>` et propage récursivement l'opération `print()`. Le code client traite indifféremment un fichier seul ou un dossier complexe.
 
-Documentation à venir sur la branche `composite`.
+Composants et éléments implémentés :
+
+- **Composant abstrait** : `Component` (gestion du nom, du niveau `level` et de l'indentation `tabs()`).
+- **Feuille (Leaf)** : `File` (représente un fichier primitif sans sous-éléments).
+- **Composite** : `Folder` (représente un dossier conteneur avec `addChild(Component)` et délégation récursive).
+
+Détails, diagramme de classes et trace d'exécution : [README de la branche `composite`](https://github.com/charly-zoungrana/TP2-DesignPattern-Observer-Decorator-Composite/blob/composite/README.md).
 
 ## Structure du projet
 
 ```
 src/main/java/net/zoungrana
 ├── observer       pattern Observer
-└── decorator      pattern Decorator
+├── decorator      pattern Decorator
+└── composite      pattern Composite
 ```
-
-Le package `composite` sera ajouté au fur et à mesure.
 
 ## Exécution
 
@@ -77,6 +81,9 @@ java -cp target/classes net.zoungrana.observer.Main
 
 # Exécuter le test du pattern Decorator
 java -cp target/classes net.zoungrana.decorator.Main
+
+# Exécuter le test du pattern Composite
+java -cp target/classes net.zoungrana.composite.Main
 ```
 
 ## Auteur
