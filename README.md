@@ -11,7 +11,7 @@ classes et une trace d'exécution. La branche `main` regroupe le code une fois c
 | Pattern | Catégorie | Documentation |
 |---|---|---|
 | Observer | Comportemental | [README Observer](https://github.com/charly-zoungrana/TP2-DesignPattern-Observer-Decorator-Composite/blob/observer/README.md) |
-| Decorator | Structurel | — |
+| Decorator | Structurel | [README Decorator](https://github.com/charly-zoungrana/TP2-DesignPattern-Observer-Decorator-Composite/blob/decorator/README.md) |
 | Composite | Structurel | — |
 
 ## Observer
@@ -33,12 +33,18 @@ Détails, diagramme de classes et trace d'exécution : [README de la branche `ob
 ## Decorator
 
 **Problème :** ajouter des responsabilités à un objet de façon dynamique, sans multiplier les sous-classes pour chaque
-combinaison de fonctionnalités.
+combinaison de fonctionnalités (éviter l'explosion combinatoire $N \times 2^M$).
 
-**Solution :** un décorateur implémente la même interface que l'objet qu'il enveloppe et lui délègue les appels, en
-ajoutant son propre comportement avant ou après. Les décorateurs peuvent s'empiler.
+**Solution :** un décorateur abstrait (`AbstractDecorator`) hérite du composant de base (`Boisson`) pour la conformité de type et
+agrège une instance de `Boisson` pour lui déléguer les appels en y ajoutant son comportement propre (coût et description).
+Cette double relation permet d'empiler récursivement des décorateurs (décorer un décorateur).
 
-Documentation à venir sur la branche `decorator`.
+Composants et décorateurs implémentés :
+
+- **Boissons de base** : `Expresso`, `Deca`, `Sumatra`.
+- **Décorateurs concrets** : `ChocolatDecorator` (+1.2), `CaramelDecorator` (+0.8).
+
+Détails, diagramme de classes et trace d'exécution : [README de la branche `decorator`](https://github.com/charly-zoungrana/TP2-DesignPattern-Observer-Decorator-Composite/blob/decorator/README.md).
 
 ## Composite
 
@@ -53,10 +59,11 @@ Documentation à venir sur la branche `composite`.
 
 ```
 src/main/java/net/zoungrana
-└── observer       pattern Observer
+├── observer       pattern Observer
+└── decorator      pattern Decorator
 ```
 
-Les packages `decorator` et `composite` seront ajoutés au fur et à mesure.
+Le package `composite` sera ajouté au fur et à mesure.
 
 ## Exécution
 
@@ -64,7 +71,12 @@ Prérequis : JDK 21 et Maven.
 
 ```bash
 mvn compile
+
+# Exécuter le test du pattern Observer
 java -cp target/classes net.zoungrana.observer.Main
+
+# Exécuter le test du pattern Decorator
+java -cp target/classes net.zoungrana.decorator.Main
 ```
 
 ## Auteur
