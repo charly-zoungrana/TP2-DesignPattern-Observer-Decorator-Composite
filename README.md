@@ -107,7 +107,6 @@ classDiagram
     AbstractDecorator <|-- CaramelDecorator : extends
 ```
 
-![Diagramme de classes](DiagrammeClass.png)
 
 Lecture du diagramme :
 
